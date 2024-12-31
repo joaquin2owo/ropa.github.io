@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header"><h1>fotos bonitas</h1></header>
+    <main><div class="carousel">
+        <div class="carousel-images">
+            <img src="foto1.jpeg" alt="Foto 1">
+            <img src="foto2.jpeg" alt="Foto 2">
+            <img src="foto3.jpeg" alt="Foto 3">
+        </div>
+        <button class="carousel-btn prev">&lt;</button>
+        <button class="carousel-btn next">&gt;</button>
+    </div>
+    <div id="modal" class="modal">
+        <span id="close">&times;</span>
+        <img id="modal-img" src="" alt="Imagen Ampliada">
+    </div> 
+    <button id="theme-toggle" class="theme-toggle">Cambiar Tema</button>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+});
+
+    
+    const carousel = document.querySelector('.carousel-images');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        const images = document.querySelectorAll('.carousel-images img');
+        
+        let index = 0;
+        
+        function updateCarousel() {
+            carousel.style.transform = `translateX(${-index * 100}%)`;
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            index = (index > 0) ? index - 1 : images.length - 1;
+            updateCarousel();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            index = (index < images.length - 1) ? index + 1 : 0;
+            updateCarousel();
+        });
+
+        setInterval(() => {
+    index = (index < images.length - 1) ? index + 1 : 0;
+    updateCarousel();
+}, 3000);
+        </script>
+    </main>
+    <footer class="footer">
+            <p>&copy; 2024 Fotos Bonitas. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+                <a href="https://twitter.com" target="_blank">X</a>
+            </div>
+        
+        
+    </footer>
+</body>
+</html>
